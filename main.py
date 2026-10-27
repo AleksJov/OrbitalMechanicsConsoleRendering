@@ -1,3 +1,5 @@
-print("Testing")
+def main():
+    pass
 
-print("Testing upload to git")
+if __name__ == '__main__':
+    main()
