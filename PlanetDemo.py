@@ -1,4 +1,7 @@
 import math
+import numpy as np
+import matplotlib.pyplot as plt
+
 from abc import ABC, abstractmethod
 
 class Planet(ABC):
