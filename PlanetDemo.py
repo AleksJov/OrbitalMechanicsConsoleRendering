@@ -80,6 +80,36 @@ class Planet(ABC):
         return force_12, force_21
 
 
+class Sun(Planet):
+
+    def __init__(self):
+        self.__name = "Sun"
+        self.__gravity = 274
+        self.__radius = 695700
+        self.__mass = 1.9884 * math.pow(10, 30)
+        super().__init__(self.__name, self.__gravity, self.__radius, self.__mass)
+
+
+class Mercury(Planet):
+
+    def __init__(self):
+        self.__name = "Mercury"
+        self.__gravity = 3.70
+        self.__radius = 2440
+        self.__mass = 3.30 * math.pow(10, 23)
+        super().__init__(self.__name, self.__gravity, self.__radius, self.__mass)
+
+
+class Venus(Planet):
+
+    def __init__(self):
+        self.__name = "Venus"
+        self.__gravity = 8.87
+        self.__radius = 6052
+        self.__mass = 4.87 * math.pow(10, 24)
+        super().__init__(self.__name, self.__gravity, self.__radius, self.__mass)
+
+
 class Earth(Planet):
 
     def __init__(self):
@@ -97,6 +127,66 @@ class Moon(Planet):
         self.__gravity = 1.624
         self.__radius = 1737.5
         self.__mass = 7.384 * math.pow(10, 22)
+        super().__init__(self.__name, self.__gravity, self.__radius, self.__mass)
+
+
+class Mars(Planet):
+
+    def __init__(self):
+        self.__name = "Mars"
+        self.__gravity = 3.71
+        self.__radius = 3390
+        self.__mass = 6.24 * math.pow(10, 23)
+        super().__init__(self.__name, self.__gravity, self.__radius, self.__mass)
+
+
+class Jupiter(Planet):
+
+    def __init__(self):
+        self.__name = "Jupiter"
+        self.__gravity = 23.1
+        self.__radius = 69911
+        self.__mass = 1.90 * math.pow(10, 27)
+        super().__init__(self.__name, self.__gravity, self.__radius, self.__mass)
+
+
+class Saturn(Planet):
+
+    def __init__(self):
+        self.__name = "Saturn"
+        self.__gravity = 9.0
+        self.__radius = 58232
+        self.__mass = 5.68 * math.pow(10, 26)
+        super().__init__(self.__name, self.__gravity, self.__radius, self.__mass)
+
+
+class Uranus(Planet):
+
+    def __init__(self):
+        self.__name = "Uranus"
+        self.__gravity = 8.7
+        self.__radius = 25559
+        self.__mass = 8.68 * math.pow(10, 25)
+        super().__init__(self.__name, self.__gravity, self.__radius, self.__mass)
+
+
+class Neptune(Planet):
+
+    def __init__(self):
+        self.__name = "Neptune"
+        self.__gravity = 11.0
+        self.__radius = 24764
+        self.__mass = 1.02 * math.pow(10, 26)
+        super().__init__(self.__name, self.__gravity, self.__radius, self.__mass)
+
+
+class Pluto(Planet):
+
+    def __init__(self):
+        self.__name = "Pluto"
+        self.__gravity = 0.62
+        self.__radius = 1188
+        self.__mass = 1.30 * math.pow(10, 22)
         super().__init__(self.__name, self.__gravity, self.__radius, self.__mass)
 
 
