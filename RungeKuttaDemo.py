@@ -15,7 +15,7 @@ def RK4(t_0,x_0,T,h):
     N = math.ceil((T-t_0)/h) + 1
     ##    print(N)
 
-    butcher_tableau = np.array([[0,0,0],[1/2,1/2,0],[0,0,1]])
+    butcher_tableau = np.array([[0,0,0,0],[1/2,0,0,0],[0,1/2,0,0],[0,0,0,1]])
     q = len(butcher_tableau)
     k = np.zeros(q-1)
     ##    print(k)
