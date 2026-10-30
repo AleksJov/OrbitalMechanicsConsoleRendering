@@ -1,29 +1,26 @@
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+from numpy.typing import NDArray
 
-def derivatives(t, state, central_mass, G):
-    r, theta, radial_velocity, angular_velocity = state
+def derivatives(t, state, central_planet: object) -> NDArray[float]:
+    r, theta, v_r, v_theta = state
 
-    if r <= 0:
-        raise ValueError("Orbital radius must stay greater than zero.")
+    radial_acc = getattr(central_planet, "centralRadialAcceleration")
+    radial_acc = radial_acc(r, v_theta)
 
-    radial_acceleration = (
-        r * angular_velocity**2
-        - G * central_mass / r**2
-    )
-    angular_acceleration = (
-        -2 * radial_velocity * angular_velocity / r
-    )
+    angular_acc = getattr(central_planet, "centralAngularAcceleration")
+    angular_acc = angular_acc(r, v_r, v_theta)
 
     return np.array([
-        radial_velocity,
-        angular_velocity,
-        radial_acceleration,
-        angular_acceleration,
+        v_r,
+        v_theta,
+        radial_acc,
+        angular_acc,
     ])
 
-def RK4(t_0, state_0, T, h, central_mass, G):
+
+def RK4(t_0, state_0, T, h, central_planet):
     N = int(np.ceil((T - t_0) / h)) + 1
 
     t = np.zeros(N)
@@ -36,22 +33,22 @@ def RK4(t_0, state_0, T, h, central_mass, G):
         current_state = states[i]
 
         k_1 = derivatives(
-            t[i], current_state, central_mass, G
+            t[i], current_state, central_planet
         )
         k_2 = derivatives(
             t[i] + h / 2,
             current_state + (h / 2) * k_1,
-            central_mass, G
+            central_planet
         )
         k_3 = derivatives(
             t[i] + h / 2,
             current_state + (h / 2) * k_2,
-            central_mass, G
+            central_planet
         )
         k_4 = derivatives(
             t[i] + h,
             current_state + h * k_3,
-            central_mass, G
+            central_planet
         )
 
         states[i + 1] = current_state + (h / 6) * (
