@@ -3,7 +3,7 @@ import math
 import matplotlib.pyplot as plt
 from numpy.typing import NDArray
 
-def derivatives(t, state, central_planet: object) -> NDArray[float]:
+def derivatives(t: float, state: list, central_planet: object) -> NDArray[float]:
     r, theta, v_r, v_theta = state
 
     radial_acc = getattr(central_planet, "centralRadialAcceleration")
@@ -20,7 +20,7 @@ def derivatives(t, state, central_planet: object) -> NDArray[float]:
     ])
 
 
-def RK4(t_0, state_0, T, h, central_planet):
+def RK4(t_0: float, state_0: list, T: float, h: float, central_planet: object):
     N = int(np.ceil((T - t_0) / h)) + 1
 
     t = np.zeros(N)
