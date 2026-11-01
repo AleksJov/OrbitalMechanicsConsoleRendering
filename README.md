@@ -20,7 +20,11 @@ begin the simulation. It does not matter whether the user
 is in fullscreen or windowed mode as the program will render
 based on the size of the terminal. One thing to avoid is switching
 between fullscreen and windowed during the simulation as this 
-causes line wrapping.
+causes line wrapping. After each render, there is some time
+provided for the user to observe the orbit, before the next
+render takes place. There is an option for using either 
+Earth's time or the chosen planet's time. Experiment with
+it and observe the changes.
 
 ## Required files
 Since this is run on the local terminal and not in an IDE,
@@ -36,6 +40,19 @@ as the program uses both.
 This is the main file. Here is where the simulation occurs.
 The user is asked whether they would like to create a planet
 or use an existing one, then the program renders to the console.
+The first render is the planets own orbit on a fixed screen size.
+The second render is the planets orbit relative to either the
+asteroid belt or 50AU (slightly further than Pluto). This way 
+the user is able to see the original and a comparison to 
+something of relative size.
+
+# DISCLAIMER
+Since the simulation compares to either the asteroid belt or Pluto,
+the speed at which some planets orbit may look funky. This is noticeable
+when choosing something like Jupiter and having the second render occur.
+It shows Jupiter orbiting very slowly compared to Pluto's second render.
+This is physically not accurate however is a limitation due to terminal 
+window sizes. This becomes more apparent when the user selects Earth's time.
 
 ## PlanetDemo
 The program has an abstract _Planet_ class from which the 
@@ -66,15 +83,16 @@ and an object for the calculation.
 
 ## ConsoleRenderDemo
 This is where the magic happens. This is the console render 
-script written by ChatGPT. If I had the time, I would
-have written it myself. The console render renders in the terminal
+script written by ChatGPT and modified by me. If I had the time, I would
+have written it from scratch myself. The console render renders in the terminal
 regardless of window size. It determines the maximum size of the 
 window and if the user is fullscreen or not. It then creates a 
 grid to which it draws the sun, the planet, and a marker for
 the orbit.
 
 ## Statement about AI usage
-All the files were written by me except for _ConsoleRenderDemo.py_.
-This is because I lacked the time to learn how to do this.
+All the files were written by me except for _ConsoleRenderDemo.py_;
+this one was originally written by ChatGPT then modified by me
+to suit my needs. This is because I lacked the time to learn how to do this.
 This is a huge project that took place over the semester,
 yet I _wisely_ decided to start it one week out from the due date.

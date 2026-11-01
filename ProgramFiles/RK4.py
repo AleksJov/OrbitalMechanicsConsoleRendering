@@ -1,8 +1,9 @@
 import numpy as np
-import math
 import matplotlib.pyplot as plt
 from numpy.typing import NDArray
+from PlanetDemo import *
 
+## Derivatives function modified for a state vector instead of a scalar
 def derivatives(t: float, state: list, central_planet: object) -> NDArray[float]:
     r, theta, v_r, v_theta = state
 
@@ -19,7 +20,7 @@ def derivatives(t: float, state: list, central_planet: object) -> NDArray[float]
         angular_acc,
     ])
 
-
+## KR4 method modified for a state vector instead of a scalar
 def RK4(t_0: float, state_0: list, T: float, h: float, central_planet: object):
     N = int(np.ceil((T - t_0) / h)) + 1
 
@@ -60,12 +61,16 @@ def RK4(t_0: float, state_0: list, T: float, h: float, central_planet: object):
 
 
 def main():
-    mass = 1.9884e30                  # Sun, kg
+
+    ## This was testing in matplotlib to see if I could generate the correct orbit
+    ## It has no effect on the simulation
+    sun = Sun()
+    sun_mass = 1.9884e30                  # Sun, kg
     G = 6.67430e-11                   # m^3 / (kg s^2)
     r_0 = 1.496e11                    # 1 AU, metres
     theta_0 = 0
     v_r_0 = 0
-    v_theta_0 = math.sqrt(G * mass / r_0**3)  # radians per second
+    v_theta_0 = math.sqrt(G * sun_mass / r_0**3)  # radians per second
 
     state = [r_0, theta_0, v_r_0, v_theta_0]
 
@@ -74,7 +79,7 @@ def main():
         0, state,
         365 * seconds_per_day,  # one year, seconds
         seconds_per_day,        # one day per step
-        mass, G
+        sun
     )
 
     r = states[:, 0]

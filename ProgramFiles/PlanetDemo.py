@@ -1,9 +1,9 @@
 import math
-import numpy as np
-import matplotlib.pyplot as plt
 
 from abc import ABC, abstractmethod
 
+## Abstract planet class with a bunch of methods that all child classes have access to
+## All the methods are public
 class Planet(ABC):
 
     __G = 6.67e-11
@@ -128,7 +128,9 @@ class Planet(ABC):
 
         return angular_acc
 
-
+## All the planets in the solar system as child classes
+## The sun is not a planet however uses the same parent class
+## The moon is not a planet either however also uses the same parent class
 class Sun(Planet):
 
     def __init__(self):
@@ -263,6 +265,12 @@ class Pluto(Planet):
         self.__sidereal_period = 248.1
         super().__init__(self.__name, self.__gravity, self.__radius, self.__mass, self.__r_0, self.__sidereal_period)
 
+class UserPlanet(Planet):
+
+    def  __init__(self, name: str, mass: float, r_0: float, sidereal_period: float):
+        gravity = 0
+        radius = 0
+        super().__init__(name, gravity, radius, mass, r_0, sidereal_period)
 
 def main():
     pass
